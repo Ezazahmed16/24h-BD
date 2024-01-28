@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "News Hub | Nextjs",
-  description: "News Hub is a news website built with Nextjs and Tailwindcss",
+  title: "24H Bangladesh",
+  description: "24H Bangladesh is a news website built with Nextjs and Tailwindcss",
 };
 
 export default function RootLayout({ children }) {

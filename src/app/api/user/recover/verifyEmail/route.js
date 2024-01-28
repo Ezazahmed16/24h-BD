@@ -23,6 +23,6 @@ export async function GET(req, res) {
       return NextResponse.json({ status: "fail", data: "user Not Found" });
     }
   } catch (e) {
-    return NextResponse.json({ status: "fail", data: e });
+    return NextResponse.json({ status: "fail", data: e.message });
   }
 }
