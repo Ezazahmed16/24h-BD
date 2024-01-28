@@ -1,25 +1,9 @@
-import Hero from "@/components/Hero";
 import PlainLayout from "@/components/Master/PlainLayout";
 import NewsList from "@/components/NewsList";
 import PopularNewsList from "@/components/PopularNewsList";
 
-const getData = async () => {
-  let slider = (
-    await (
-      await fetch(`${process.env.HOST}/api/news/type?type=Slider`, {
-        cache: "no-store",
-      })
-    ).json()
-  )["data"];
-  let featured = (
-    await (
-      await fetch(`${process.env.HOST}/api/news/type?type=Featured`, {
-        cache: "no-store",
-      })
-    ).json()
-  )["data"];
-
-  let popular = (
+const getData = async (id) => {
+  const popular = (
     await (
       await fetch(`${process.env.HOST}/api/news/type?type=Popular`, {
         cache: "no-store",
@@ -28,31 +12,21 @@ const getData = async () => {
   )["data"];
   let latest = (
     await (
-      await fetch(`${process.env.HOST}/api/news/type?type=latest`, {
+      await fetch(`${process.env.HOST}/api/news/category?catID=${id}`, {
         cache: "no-store",
       })
     ).json()
   )["data"];
 
-  return {
-    slider: slider,
-    featured: featured,
-    popular: popular,
-    latest: latest,
-  };
+  return { popular: popular, latest: latest };
 };
 
-export default async function Home() {
-  const { slider, featured, latest, popular } = await getData();
+const page = async (props) => {
+  let id = props.searchParams["id"];
+  const { popular, latest } = await getData(id);
   return (
     <PlainLayout>
       <div className="container">
-        <Hero
-          slider={slider}
-          featured={featured}
-          latest={latest}
-          popular={popular}
-        />
         <div className="py-5">
           <h5 className="text-xl font-bold mb-2">LATEST</h5>
           <hr className="border-b border-gray-300 mb-4" />
@@ -68,4 +42,6 @@ export default async function Home() {
       </div>
     </PlainLayout>
   );
-}
+};
+
+export default page;
