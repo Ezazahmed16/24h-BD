@@ -2,6 +2,7 @@ import prisma from "@/libs/Prisma";
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
+// api/categories
 export async function POST(req, res) {
   try {
     const reqBody = await req.json();
@@ -14,6 +15,7 @@ export async function POST(req, res) {
   }
 }
 
+// api/categories - GET
 export async function GET(req, res) {
   try {
     const result = await prisma.categories.findMany({

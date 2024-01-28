@@ -2,6 +2,7 @@ import prisma from "@/libs/Prisma";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+// api/comments/manage
 export async function GET(req, res) {
   try {
     const headerList = headers();
@@ -20,6 +21,7 @@ export async function GET(req, res) {
   }
 }
 
+// api/comments/manage
 export async function POST(req, res) {
   try {
     const headerList = headers();
